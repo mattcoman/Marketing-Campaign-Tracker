@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marketing Campaign Tracker</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      google.script.run.withSuccessHandler(displayCampaigns).getCampaigns();
+    });
+
+    function displayCampaigns(campaigns) {
+      var table = document.getElementById('campaignTable');
+      campaigns.forEach(function(campaign) {
+        var row = table.insertRow();
+        campaign.forEach(function(cell) {
+          var newCell = row.insertCell();
+          newCell.textContent = cell;
+        });
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Marketing Campaign Tracker</h1>
+  <table id="campaignTable" class="highlight">
+    <thead>
+      <tr>
+        <th>Campaign Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Budget</th>
+        <th>Spend</th>
+        <th>ROI</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</body>
+</html>
